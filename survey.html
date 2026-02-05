@@ -1,111 +1,240 @@
+<!--
+Name: Aditya Raj
+File: survey.html
+Purpose: Student Survey Form for SWE645 Assignment 1
+-->
+
 <!DOCTYPE html>
 <html lang="en">
 <head>
     <meta charset="UTF-8">
-    <title>Survey Form</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Student Survey</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <!-- Bootstrap CDN -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
 
     <style>
-        body {
-            margin: 0;
-            font-family: "Segoe UI", Tahoma, sans-serif;
-            background: #f4f6f8;
-            color: #333;
-        }
-
-        .container {
-            max-width: 600px;
-            margin: 60px auto;
-            background: #ffffff;
-            padding: 40px;
-            border-radius: 10px;
-            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.1);
-        }
-
-        h2 {
-            text-align: center;
-            margin-bottom: 25px;
-            color: #2a5298;
-        }
-
-        label {
-            display: block;
-            margin-bottom: 6px;
-            font-weight: 600;
-        }
-
-        input,
-        select,
-        textarea {
-            width: 100%;
-            padding: 10px;
-            margin-bottom: 20px;
-            border-radius: 6px;
-            border: 1px solid #ccc;
-            font-size: 1rem;
-        }
-
-        textarea {
-            resize: vertical;
-            min-height: 100px;
-        }
-
-        button {
-            width: 100%;
-            padding: 14px;
-            background-color: #2a5298;
-            color: #fff;
-            border: none;
-            border-radius: 8px;
-            font-size: 1.05rem;
-            font-weight: 600;
-            cursor: pointer;
-            transition: background 0.3s ease;
-        }
-
-        button:hover {
-            background-color: #1e3c72;
-        }
-
-        .note {
-            text-align: center;
-            margin-top: 15px;
-            font-size: 0.9rem;
-            color: #777;
+        .required-star {
+            color: red;
         }
     </style>
 </head>
-<body>
 
-<div class="container">
-    <h2>Customer Feedback Survey</h2>
+<body class="bg-light">
 
-    <form>
-        <label for="name">Full Name</label>
-        <input type="text" id="name" placeholder="Enter your name">
+<!-- Navbar -->
+<nav class="navbar navbar-dark bg-dark">
+    <div class="container">
+        <button class="btn btn-outline-light" onclick="goHome()">Back to Home</button>
+    </div>
+</nav>
 
-        <label for="email">Email Address</label>
-        <input type="email" id="email" placeholder="Enter your email">
+<div class="container mt-5 mb-5">
+    <div class="card shadow">
+        <div class="card-body">
 
-        <label for="rating">How would you rate our service?</label>
-        <select id="rating">
-            <option value="">Select an option</option>
-            <option>Excellent</option>
-            <option>Good</option>
-            <option>Average</option>
-            <option>Poor</option>
-        </select>
+            <h2 class="mb-4">Student Survey Form</h2>
 
-        <label for="feedback">Additional Feedback</label>
-        <textarea id="feedback" placeholder="Write your comments here..."></textarea>
+            <!-- Success Message -->
+            <div id="successMessage" class="alert alert-success d-none">
+                Thank you! Your survey has been submitted successfully.
+            </div>
 
-        <button type="submit">Submit Survey</button>
-    </form>
+            <form id="surveyForm" novalidate>
 
-    <div class="note">
-        * This is a demo form. No data is collected.
+                <!-- Personal Information -->
+                <div class="row g-3">
+
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            First Name <span class="required-star">*</span>
+                        </label>
+                        <input type="text" name="first_name" class="form-control" required>
+                        <div class="invalid-feedback">First name is required.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Last Name <span class="required-star">*</span>
+                        </label>
+                        <input type="text" name="last_name" class="form-control" required>
+                        <div class="invalid-feedback">Last name is required.</div>
+                    </div>
+
+                    <div class="col-md-12">
+                        <label class="form-label">
+                            Street Address <span class="required-star">*</span>
+                        </label>
+                        <input type="text" name="address" class="form-control" required>
+                        <div class="invalid-feedback">Street address is required.</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            City <span class="required-star">*</span>
+                        </label>
+                        <input type="text" name="city" class="form-control" required>
+                        <div class="invalid-feedback">City is required.</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            State <span class="required-star">*</span>
+                        </label>
+                        <input type="text" name="state" class="form-control" required>
+                        <div class="invalid-feedback">State is required.</div>
+                    </div>
+
+                    <div class="col-md-4">
+                        <label class="form-label">
+                            Zip <span class="required-star">*</span>
+                        </label>
+                        <input type="text" name="zip" class="form-control" required>
+                        <div class="invalid-feedback">Zip code is required.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Telephone <span class="required-star">*</span>
+                        </label>
+                        <input type="tel" name="telephone" class="form-control" required>
+                        <div class="invalid-feedback">Telephone number is required.</div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Email <span class="required-star">*</span>
+                        </label>
+                        <input type="email" name="email" id="email" class="form-control" required>
+                        <div class="invalid-feedback">
+                            Please enter a valid email address.
+                        </div>
+                    </div>
+
+                    <div class="col-md-6">
+                        <label class="form-label">
+                            Date of Survey <span class="required-star">*</span>
+                        </label>
+                        <input type="date" name="date" class="form-control" required>
+                        <div class="invalid-feedback">Date is required.</div>
+                    </div>
+
+                </div>
+
+                <hr>
+
+                <!-- Checkboxes -->
+                <label class="fw-bold">What did you like most about the campus?</label>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="likes" value="Students"> Students</div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="likes" value="Location"> Location</div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="likes" value="Campus"> Campus</div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="likes" value="Atmosphere"> Atmosphere</div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="likes" value="Dorm Rooms"> Dorm Rooms</div>
+                <div class="form-check"><input class="form-check-input" type="checkbox" name="likes" value="Sports"> Sports</div>
+
+                <hr>
+
+                <!-- Radio Buttons -->
+                <label class="fw-bold">How did you become interested in the university?</label>
+                <div class="form-check"><input class="form-check-input" type="radio" name="interest" value="Friends"> Friends</div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="interest" value="Television"> Television</div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="interest" value="Internet"> Internet</div>
+                <div class="form-check"><input class="form-check-input" type="radio" name="interest" value="Other"> Other</div>
+
+                <hr>
+
+                <!-- Dropdown -->
+                <label class="fw-bold">Likelihood of Recommending</label>
+                <select class="form-select" name="recommendation">
+                    <option>Very Likely</option>
+                    <option>Likely</option>
+                    <option>Unlikely</option>
+                </select>
+
+                <hr>
+
+                <!-- Raffle -->
+                <label class="fw-bold">Raffle (Enter at least 10 comma-separated numbers 1–100)</label>
+                <input type="text" name="raffle" class="form-control" placeholder="e.g. 5,12,33,45,67,89,23,90,10,2">
+
+                <hr>
+
+                <!-- Comments -->
+                <label class="fw-bold">Additional Comments</label>
+                <textarea class="form-control" name="comments" rows="4"></textarea>
+
+                <hr>
+
+                <!-- Buttons -->
+                <div class="text-end">
+                    <button type="submit" class="btn btn-success">Submit</button>
+                    <button type="reset" class="btn btn-secondary">Cancel</button>
+                </div>
+
+            </form>
+
+        </div>
     </div>
 </div>
+
+<!-- JavaScript -->
+<script>
+    // Navigation
+    function goHome() {
+        window.location.href = "index.html";
+    }
+
+    // Form Validation & Success Message
+    document.addEventListener("DOMContentLoaded", function () {
+        const form = document.getElementById("surveyForm");
+        const email = document.getElementById("email");
+        const successMessage = document.getElementById("successMessage");
+
+        // Live email validation
+        email.addEventListener("input", function () {
+            if (email.checkValidity()) {
+                email.classList.remove("is-invalid");
+            } else {
+                email.classList.add("is-invalid");
+            }
+        });
+
+        // Form submission
+        form.addEventListener("submit", function (event) {
+            event.preventDefault();
+            let isValid = true;
+
+            // Check required fields
+            const requiredFields = form.querySelectorAll("[required]");
+            requiredFields.forEach(function (field) {
+                if (!field.value.trim() || !field.checkValidity()) {
+                    field.classList.add("is-invalid");
+                    isValid = false;
+                } else {
+                    field.classList.remove("is-invalid");
+                }
+            });
+
+            // If form is valid, show success message
+            if (isValid) {
+                successMessage.classList.remove("d-none");
+                form.reset();
+                const allFields = form.querySelectorAll(".is-invalid");
+                allFields.forEach(field => field.classList.remove("is-invalid"));
+                window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+        });
+
+        // Reset button behavior
+        form.addEventListener("reset", function () {
+            successMessage.classList.add("d-none");
+            const allFields = form.querySelectorAll(".is-invalid");
+            allFields.forEach(field => field.classList.remove("is-invalid"));
+            window.scrollTo({ top: 0, behavior: "smooth" });
+        });
+    });
+</script>
 
 </body>
 </html>
